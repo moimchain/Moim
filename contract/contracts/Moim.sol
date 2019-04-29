@@ -67,11 +67,12 @@ library SafeMath {
 contract LoanContract {
    using SafeMath for uint256;
 
-   event NewLoanCreation(address bank, address target, uint256 value);
+   event NewLoanCreation(address bank, address target, uint256 postNumber, uint256 value);
 
    struct Loan {
        address borrow; // naming change
        address lender; // naming change
+       uint256 postNumber;
        uint256 totalAmount;
        uint256 totalPayBackedAmount;
        uint256 loanStartTime;
@@ -81,42 +82,44 @@ contract LoanContract {
 
    mapping(bytes32 => Loan) loanMap;
 
-   function getId(address bankAddr, address targetAddr) private pure returns(bytes32) {
-       return keccak256(abi.encodePacked(bankAddr,targetAddr));
+   function getId(address bankAddr, address targetAddr, uint256 postNumber) private pure returns(bytes32) {
+       return keccak256(abi.encodePacked(bankAddr,targetAddr, postNumber));
    }
 
-   function createNewLoan(address _borrowAddr, address _lenderAddr, uint256 _totalAmount) external {
-       bytes32 id = getId(_borrowAddr, _lenderAddr);
-    //   require(loanMap[id].loanStartTime == 0, “Already created loan.“);
+   function createNewLoan(address _borrowAddr, address _lenderAddr, uint256 _postNumber, uint256 _totalAmount) external {
+       bytes32 id = getId(_borrowAddr, _lenderAddr, _postNumber);
+      require(loanMap[id].loanStartTime == 0, "Already created loan.");
 
        loanMap[id] = Loan({
                borrow : _borrowAddr,
                lender : _lenderAddr,
+               postNumber : _postNumber,
                totalAmount : _totalAmount,
                totalPayBackedAmount : 0,
                loanStartTime : now,
                payBackedAmount : new uint256[](0),
                payBackedTime : new uint256[](0)
            });
-       emit NewLoanCreation( _borrowAddr, _lenderAddr, _totalAmount);
+       emit NewLoanCreation( _borrowAddr, _lenderAddr, _postNumber, _totalAmount);
    }
 
-   function payBackLoan(address borrowedAddr, address bankAddr, uint256 payBackVal) external {
-       bytes32 id = getId(bankAddr,borrowedAddr);
-    //   require(id != 0, “Not existed id.“);
+   function payBackLoan(address _borrowAddr, address _lenderAddr, uint256 _postNumber, uint256 payBackVal) external {
+       bytes32 id = getId(_borrowAddr, _lenderAddr, _postNumber);
+      require(id != 0, "Not existed id.");
 
-    //   require((loanMap[id].totalAmount - loanMap[id].totalPayBackedAmount) >= payBackVal, “Pay back value is larger than borrow.“);
+      require((loanMap[id].totalAmount - loanMap[id].totalPayBackedAmount) >= payBackVal, "Pay back value is larger than borrow.");
        loanMap[id].totalPayBackedAmount = loanMap[id].totalPayBackedAmount.add(payBackVal);
        loanMap[id].payBackedAmount.push(payBackVal);
        loanMap[id].payBackedTime.push(now);
    }
    
-   function getLoanInfo(address borrowedAddr, address bankAddr) public view returns(uint256, uint256, uint256) {
-        bytes32 _id = getId(bankAddr, borrowedAddr);
+  function getLoanInfo(address _borrowAddr, address _lenderAddr, uint256 _postNumber) public view returns(uint256, uint256, uint256[] memory, uint256[] memory) {
+        bytes32 _id = getId(_borrowAddr, _lenderAddr, _postNumber);
         return(
             loanMap[_id].totalAmount,
             loanMap[_id].totalPayBackedAmount,
-            loanMap[_id].payBackedAmount.length
+            loanMap[_id].payBackedAmount,
+            loanMap[_id].payBackedTime
         );
     }
 }
