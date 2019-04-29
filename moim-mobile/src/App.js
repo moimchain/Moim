@@ -4,16 +4,10 @@ import { View, Image, Dimensions } from 'react-native';
 import { createAppContainer, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import {cacheAssets,cacheFonts} from "./helpers/AssetsCaching";
 
-import Components from './drawer/components';
-import Ratings from './drawer/ratings';
-import Pricing from './drawer/pricing';
-import Login from './drawer/login';
 import Profile from './drawer/profile';
 import Lists from './drawer/lists';
 import Settings from './drawer/settings';
 import Home from './drawer/home';
-
-const WINDOW_WIDTH = Dimensions.get('window').width;
 
 const MainRoot = createAppContainer(createDrawerNavigator(
   {
@@ -28,15 +22,7 @@ const MainRoot = createAppContainer(createDrawerNavigator(
     Lists: {
       path: '/lists',
       screen: Lists,
-    },
-    Components: {
-      path: '/components',
-      screen: Components,
-    },
-    Settings: {
-      path: '/settings',
-      screen: Settings,
-    },
+    }
   },
   {
     initialRouteName: 'Home',
