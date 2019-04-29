@@ -3,5 +3,9 @@
  * Home page.
  */
 exports.index = (req, res) => {
-  res.send({ hello: 'world' });
+  const token = req.user.tokens.find(token => token.kind === 'facebook');
+  res.send({
+    hello: 'world',
+    token: token
+  });
 };

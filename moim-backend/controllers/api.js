@@ -10,9 +10,9 @@ exports.getFacebook = (req, res, next) => {
   graph.setAccessToken(token.accessToken);
   graph.get(`${req.user.facebook}?fields=id,name,email,first_name,last_name,gender,link,locale,timezone`, (err, profile) => {
     if (err) { return next(err); }
-    res.render('api/facebook', {
+    res.json({
       title: 'Facebook API',
-      profile
+      profile: 'login complete'
     });
   });
 };
@@ -52,7 +52,7 @@ exports.getPayPal = (req, res, next) => {
     req.session.paymentId = id;
     for (let i = 0; i < links.length; i++) {
       if (links[i].rel === 'approval_url') {
-        res.render('api/paypal', {
+        res.json({
           approvalUrl: links[i].href
         });
       }
@@ -68,7 +68,7 @@ exports.getPayPalSuccess = (req, res) => {
   const { paymentId } = req.session;
   const paymentDetails = { payer_id: req.query.PayerID };
   paypal.payment.execute(paymentId, paymentDetails, (err) => {
-    res.render('api/paypal', {
+    res.json({
       result: true,
       success: !err
     });
@@ -81,7 +81,7 @@ exports.getPayPalSuccess = (req, res) => {
  */
 exports.getPayPalCancel = (req, res) => {
   req.session.paymentId = null;
-  res.render('api/paypal', {
+  res.json({
     result: true,
     canceled: true
   });
