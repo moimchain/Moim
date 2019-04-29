@@ -1,12 +1,10 @@
 import React from 'react';
 import AppLoading from "./components/AppLoading";
-import { View, Image, Dimensions } from 'react-native';
-import { createAppContainer, createDrawerNavigator, DrawerItems } from 'react-navigation';
+import { createAppContainer, createDrawerNavigator } from 'react-navigation';
 import {cacheAssets,cacheFonts} from "./helpers/AssetsCaching";
 
 import Profile from './drawer/profile';
 import Lists from './drawer/lists';
-import Settings from './drawer/settings';
 import Home from './drawer/home';
 
 const MainRoot = createAppContainer(createDrawerNavigator(
@@ -52,7 +50,6 @@ export default class AppContainer extends React.Component {
       "Entypo": require("@expo/vector-icons/fonts/Entypo.ttf"),
       "SimpleLineIcons": require("@expo/vector-icons/fonts/SimpleLineIcons.ttf"),
       "MaterialIcons": require("@expo/vector-icons/fonts/MaterialIcons.ttf"),
-      //TODO: What's wrong with MaterialCommunityIcons ???
       "MaterialCommunityIcons": require("@expo/vector-icons/fonts/MaterialCommunityIcons.ttf"),
     });
 

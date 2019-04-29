@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { View, ScrollView, StyleSheet, Text, Dimensions } from 'react-native';
 import {
-  Input,
   SearchBar,
   Icon,
-  Button,
-  ThemeProvider,
 } from 'react-native-elements';
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
+import { Button } from 'react-native-elements';
 
 const dummySearchBarProps = {
   showLoading: true,
@@ -23,18 +19,18 @@ class Home extends Component {
   render() {
     return (
       <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
-        <View style={styles.headerContainer}>
-          <Icon color="white" name="search" size={62} />
-          <Text style={styles.heading}>Home</Text>
-        </View>
         <SearchBar placeholder="Default searchbar" {...dummySearchBarProps} />
-        <View
-          style={[
-            styles.headerContainer,
-            { backgroundColor: '#616389', marginTop: 20 },
-          ]}
-        >
-        </View>
+
+        <Button
+              title="LOG IN"
+              buttonStyle={{
+                borderWidth: 2,
+                borderColor: 'white',
+                borderRadius: 30,
+              }}
+              containerStyle={{ marginVertical: 10, height: 50, width: 250 }}
+              titleStyle={{ fontWeight: 'bold' }}
+            />
       </ScrollView>
     );
   }

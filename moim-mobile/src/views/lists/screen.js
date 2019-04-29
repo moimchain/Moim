@@ -179,7 +179,6 @@ export default class ListsScreen1 extends Component {
             marginRight: 10,
           }}
         >
-          {this.renderValue(user)}
           <View
             style={{
               backgroundColor: 'rgba(222,222,222,1)',
