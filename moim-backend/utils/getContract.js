@@ -14,40 +14,60 @@ const web3 = new Web3(provider);
 const contractInstance = web3.eth.Contract(abi, contractAddr);
 const adminAddr = '0x1Cc180855d25D3B8A3090F04a30Cc27A5C63FfE1';
 
+// exports.getReceipt = (hash) => {
+//     console.log(hash);
+// };
+
 exports.createLoan = (
-    borrowMail,
-    lenderMail,
-    postNum,
-    lenderAmount
+    borrower, lenderAdrr, amountList, postNum
 ) => {
-    console.log(borrowMail);
-    return contractInstance.methods.createNewLoan(borrowMail, lenderMail, postNum, lenderAmount).send({
-        gas: '210000',
-        from: adminAddr
-    }).then(res => {
-        console.log(res);
-    })
+    try {
+        contractInstance.methods.createNewLoan(borrower, lenderAdrr, amountList, postNum).send({
+            gas: '1010000',
+            from: adminAddr
+        });
+        return true;
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
 };
 
 
 exports.updateLoan = (
-    borrowMail,
-    lenderMail,
-    postNum,
-    lenderAmount
+    borrower, postNum, repayValue
 ) => {
-    return contractInstance.methods.payBackLoan(borrowMail, lenderMail, postNum, lenderAmount).send({
-        gas: '210000',
-        from: adminAddr
-    }).then(res => {
-        console.log(res);
-    })
+    try {
+        contractInstance.methods.payBackLoan(borrower, postNum, repayValue).send({
+            gas: '1010000',
+            from: adminAddr
+        });
+        return true;
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
 };
 
 exports.getLoan = async (
     borrowMail,
-    lenderMail,
-    postNum,
+    postNum
 ) => {
-    return await contractInstance.methods.getLoanInfo(borrowMail, lenderMail, postNum).call();
+    return await contractInstance.methods.getLoanInfo(borrowMail, postNum).call();
 };
+
+exports.byteConverter = (arr) => {
+    const temp = [];
+    for (let i = 0; i < arr.length; i++) {
+        temp.push(web3.utils.fromAscii(arr[i]));
+    }
+    return temp;
+}
+
+exports.hexConverter = (arr) => {
+    const temp = [];
+    for (let i = 0; i < arr.length; i++) {
+        temp.push(web3.utils.toAscii(arr[i]).toString().replace("\u0000", ""));
+    }
+    return temp;
+}

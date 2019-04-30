@@ -21,12 +21,14 @@ exports.borrow = async (req, res) => {
 
     let {
         borrower,
-        lender,
-        postNum,
-        amount
+        lenderList,
+        amountList,
+        postNum
     } = req.body;
 
-    const result = await contract.createLoan(borrower, lender, postNum, amount);
+    const lenderAdrr = await contract.byteConverter(lenderList);
+    console.log(lenderList);
+    const result = await contract.createLoan(borrower, lenderAdrr, amountList, postNum);
 
     if (result) {
         console.log(result);
@@ -46,12 +48,12 @@ exports.repay = async (req, res) => {
 
     let {
         borrower,
-        lender,
         postNum,
-        amount
+        repayValue
     } = req.body;
 
-    const result = await contract.updateLoan(borrower, lender, postNum, amount);
+    const result = await contract.updateLoan(borrower,
+        postNum, repayValue);
 
     if (result) {
         console.log(result);
@@ -71,22 +73,25 @@ exports.getLoanInfo = async (req, res) => {
 
     let {
         borrower,
-        lender,
         postNum
     } = req.body;
 
-    const result = await contract.getLoan(borrower, lender, postNum);
+    const result = await contract.getLoan(borrower, postNum);
 
     if (result) {
-        const payBackedAmountArray = converter(result[2]);
-        const payBackedTimeArray = converter(result[3]);
+        const lenderArray = contract.hexConverter(result[0]);
+        const lenderAmountArray = bigIntConverter(result[1]);
+        const payBackedAmountArray = bigIntConverter(result[3]);
+        const payBackedTimeArray = bigIntConverter(result[4]);
+
         const loanInfo = {
-            totalAmount: BigInt(result[0]).toString(),
-            totalPayBackedAmount: BigInt(result[1]).toString(),
+            lenderArray,
+            lenderAmountArray,
+            totalPayBackedAmount: BigInt(result[2]).toString(),
             payBackedAmountArray,
             payBackedTimeArray
         }
-
+        console.log(loanInfo);
         res.json({
             ok: true,
             loanInfo
@@ -100,7 +105,7 @@ exports.getLoanInfo = async (req, res) => {
 
 }
 
-const converter = (arr) => {
+const bigIntConverter = (arr) => {
     const temp = [];
     for (let i = 0; i < arr.length; i++) {
         temp.push(BigInt(arr[i]).toString());

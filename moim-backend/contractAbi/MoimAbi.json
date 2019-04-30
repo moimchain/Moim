@@ -6,14 +6,14 @@
             },
             {
                 "name": "_lenderAddr",
-                "type": "string"
+                "type": "bytes32[]"
+            },
+            {
+                "name": "_lenderAmount",
+                "type": "uint256[]"
             },
             {
                 "name": "_postNumber",
-                "type": "uint256"
-            },
-            {
-                "name": "_totalAmount",
                 "type": "uint256"
             }
         ],
@@ -27,10 +27,6 @@
         "constant": false,
         "inputs": [{
                 "name": "_borrowAddr",
-                "type": "string"
-            },
-            {
-                "name": "_lenderAddr",
                 "type": "string"
             },
             {
@@ -57,17 +53,7 @@
             },
             {
                 "indexed": false,
-                "name": "target",
-                "type": "string"
-            },
-            {
-                "indexed": false,
                 "name": "postNumber",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "name": "value",
                 "type": "uint256"
             }
         ],
@@ -81,10 +67,6 @@
                 "type": "string"
             },
             {
-                "name": "_lenderAddr",
-                "type": "string"
-            },
-            {
                 "name": "_postNumber",
                 "type": "uint256"
             }
@@ -92,7 +74,11 @@
         "name": "getLoanInfo",
         "outputs": [{
                 "name": "",
-                "type": "uint256"
+                "type": "bytes32[]"
+            },
+            {
+                "name": "",
+                "type": "uint256[]"
             },
             {
                 "name": "",
