@@ -1,0 +1,114 @@
+[{
+        "constant": false,
+        "inputs": [{
+                "name": "_borrowAddr",
+                "type": "string"
+            },
+            {
+                "name": "_lenderAddr",
+                "type": "string"
+            },
+            {
+                "name": "_postNumber",
+                "type": "uint256"
+            },
+            {
+                "name": "_totalAmount",
+                "type": "uint256"
+            }
+        ],
+        "name": "createNewLoan",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [{
+                "name": "_borrowAddr",
+                "type": "string"
+            },
+            {
+                "name": "_lenderAddr",
+                "type": "string"
+            },
+            {
+                "name": "_postNumber",
+                "type": "uint256"
+            },
+            {
+                "name": "payBackVal",
+                "type": "uint256"
+            }
+        ],
+        "name": "payBackLoan",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [{
+                "indexed": false,
+                "name": "bank",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "target",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "postNumber",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "NewLoanCreation",
+        "type": "event"
+    },
+    {
+        "constant": true,
+        "inputs": [{
+                "name": "_borrowAddr",
+                "type": "string"
+            },
+            {
+                "name": "_lenderAddr",
+                "type": "string"
+            },
+            {
+                "name": "_postNumber",
+                "type": "uint256"
+            }
+        ],
+        "name": "getLoanInfo",
+        "outputs": [{
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "name": "",
+                "type": "uint256[]"
+            },
+            {
+                "name": "",
+                "type": "uint256[]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
