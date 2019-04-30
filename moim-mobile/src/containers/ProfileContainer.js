@@ -8,7 +8,7 @@ class ProfileContainer extends React.Component {
   componentDidUpdate() {
     if (this.props.authInfo.loggedIn) {
       postNum = this.props.loanInfo ? this.props.loanInfo.postNum : 0;
-      this.props.getLoanInfo(this.props.authInfo.userInfo.email, postNum);
+      this.props.performGetLoanInfo(this.props.authInfo.userInfo.email, postNum);
     }
   }
   render() {

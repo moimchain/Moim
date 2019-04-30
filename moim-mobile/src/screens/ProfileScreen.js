@@ -13,7 +13,9 @@ export default class ProfileScreen extends Component {
   render() {
     return (
       <View>
+        <Text h1>Loan Status</Text>
         <Text h1>{this.props.loanInfo.totalAmount}</Text>
+        <View></View>
         <Text h2>{this.props.loanInfo.totalPayBackedAmount}</Text>
         <Text h2>{this.props.loanInfo.payBackedAmountArray}</Text>
         <Text h2>{this.props.loanInfo.payBackedTimeArray}</Text>
