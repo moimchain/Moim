@@ -24,54 +24,51 @@ class Home extends Component {
       <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.contentView}>
           <Image
-          source={require('../../assets/icons/logo.png')}
-          style={{width: 425, height: 250}}
-        />
+            source={require('../../assets/icons/logo.png')}
+            style={{ width: 425, height: 250 }}
+          />
           <Input
             containerStyle={{
-              marginVertical: 40,
+              marginTop: 30,
               backgroundColor: '#f6f6f6',
-              marginHorizontal: 50,
+              marginHorizontal: 60,
               height: 50,
               width: 300,
               borderColor: '#ececec',
-              borderWidth: 5,
+              borderWidth: 5
             }}
             leftIcon={
               <Icon
                 name='dollar'
                 size={24}
-                color='#ececec'
+                color='#a0a0a0'
               />
             }
             placeholder='  Borrowing Amount'>
           </Input>
-          <View
-            containerStyle={{ marginVertical: 40 }}
-          >
-          <Button
-            containerStyle={{ marginVertical: 200 }}
-            buttonStyle={{
-              backgroundColor: '#1AC1D4',
-              borderRadius: 5
-            }}
-            titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
-            icon={
-              <Icon
-                name="check-circle"
-                size={23}
-                color="white"
-              />
-            }
-            onPress={() => {
-              this.props.navigation.dispatch(navigateAction)
-            }}
-            title=" Submit">
-          </Button>
-        </View>
-
-
-
+          <View containerStyle={{ marginVertical: 40 }}>
+            <Button
+              containerStyle={{ marginTop: 180 }}
+              buttonStyle={{
+                backgroundColor: '#1AC1D4',
+                borderRadius: 5,
+                padding: 10,
+                paddingHorizontal: 20,
+              }}
+              titleStyle={{ fontWeight: 'bold', fontSize: 26 }}
+              icon={
+                <Icon
+                  name="check-circle"
+                  size={26}
+                  color="white"
+                />
+              }
+              onPress={() => {
+                this.props.navigation.dispatch(navigateAction)
+              }}
+              title=" Submit">
+            </Button>
+          </View>
         </View>
       </ScrollView>
     );
