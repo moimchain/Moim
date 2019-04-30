@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const contractConfig = require('../config');
-const abi = require('../abi/Moim.json');
+const abi = require('../contractAbi/MoimAbi.json');
 const Web3 = require('web3');
 const PrivateKeyProvider = require("truffle-privatekey-provider");
 
@@ -14,12 +14,12 @@ const web3 = new Web3(provider);
 const contractInstance = web3.eth.Contract(abi, contractAddr);
 const adminAddr = '0x1Cc180855d25D3B8A3090F04a30Cc27A5C63FfE1';
 
-export function createLoan({
+exports.createLoan = ({
     borrowMail,
     lenderMail,
     postNum,
     lenderAmount
-}) {
+}) => {
     return contractInstance.methods.createNewLoan(borrowMail, lenderMail, postNum, lenderAmount).send({
         gas: '210000',
         from: adminAddr
@@ -29,12 +29,12 @@ export function createLoan({
 };
 
 
-export function updateLoan({
+exports.updateLoan = ({
     borrowMail,
     lenderMail,
     postNum,
     lenderAmount
-}) {
+}) => {
     return contractInstance.methods.payBackLoan(borrowMail, lenderMail, postNum, lenderAmount).send({
         gas: '210000',
         from: adminAddr
@@ -43,12 +43,12 @@ export function updateLoan({
     })
 };
 
-export function updateLoan({
+exports.updateLoan = ({
     borrowMail,
     lenderMail,
     postNum,
     lenderAmount
-}) {
+}) => {
     contractInstance.methods.getLoanInfo(borrowMail, lenderMail, postNum).call().then(res => {
         console.log(res);
     })
