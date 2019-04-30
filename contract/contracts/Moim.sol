@@ -67,11 +67,11 @@ library SafeMath {
 contract LoanContract {
    using SafeMath for uint256;
 
-   event NewLoanCreation(address bank, address target, uint256 postNumber, uint256 value);
+   event NewLoanCreation(string bank, string target, uint256 postNumber, uint256 value);
 
    struct Loan {
-       address borrow; // naming change
-       address lender; // naming change
+       string borrow;
+       string lender;
        uint256 postNumber;
        uint256 totalAmount;
        uint256 totalPayBackedAmount;
@@ -82,11 +82,11 @@ contract LoanContract {
 
    mapping(bytes32 => Loan) loanMap;
 
-   function getId(address bankAddr, address targetAddr, uint256 postNumber) private pure returns(bytes32) {
+   function getId(string memory bankAddr, string memory targetAddr, uint256 postNumber) private pure returns(bytes32) {
        return keccak256(abi.encodePacked(bankAddr,targetAddr, postNumber));
    }
 
-   function createNewLoan(address _borrowAddr, address _lenderAddr, uint256 _postNumber, uint256 _totalAmount) external {
+   function createNewLoan(string memory _borrowAddr, string memory _lenderAddr, uint256 _postNumber, uint256 _totalAmount) public {
        bytes32 id = getId(_borrowAddr, _lenderAddr, _postNumber);
       require(loanMap[id].loanStartTime == 0, "Already created loan.");
 
@@ -103,7 +103,7 @@ contract LoanContract {
        emit NewLoanCreation( _borrowAddr, _lenderAddr, _postNumber, _totalAmount);
    }
 
-   function payBackLoan(address _borrowAddr, address _lenderAddr, uint256 _postNumber, uint256 payBackVal) external {
+   function payBackLoan(string memory _borrowAddr, string memory _lenderAddr, uint256 _postNumber, uint256 payBackVal) public {
        bytes32 id = getId(_borrowAddr, _lenderAddr, _postNumber);
       require(id != 0, "Not existed id.");
 
@@ -113,9 +113,9 @@ contract LoanContract {
        loanMap[id].payBackedTime.push(now);
    }
    
-  function getLoanInfo(address _borrowAddr, address _lenderAddr, uint256 _postNumber) public view returns(uint256, uint256, uint256[] memory, uint256[] memory) {
+  function getLoanInfo(string memory _borrowAddr, string memory _lenderAddr, uint256 _postNumber) public view returns(uint256, uint256, uint256[] memory, uint256[] memory) {
         bytes32 _id = getId(_borrowAddr, _lenderAddr, _postNumber);
-        return(
+        return (
             loanMap[_id].totalAmount,
             loanMap[_id].totalPayBackedAmount,
             loanMap[_id].payBackedAmount,
