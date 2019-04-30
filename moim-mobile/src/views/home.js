@@ -28,8 +28,23 @@ class Home extends Component {
           style={{width: 425, height: 250}}
         />
           <Input
-            containerStyle={{ marginVertical: 40 }}
-            placeholder='Loan Amount'>
+            containerStyle={{
+              marginVertical: 40,
+              backgroundColor: '#f6f6f6',
+              marginHorizontal: 50,
+              height: 50,
+              width: 300,
+              borderColor: '#ececec',
+              borderWidth: 5,
+            }}
+            leftIcon={
+              <Icon
+                name='dollar'
+                size={24}
+                color='#ececec'
+              />
+            }
+            placeholder='  Borrowing Amount'>
           </Input>
           <View
             containerStyle={{ marginVertical: 40 }}
