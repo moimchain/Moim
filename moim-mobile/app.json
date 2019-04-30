@@ -1,21 +1,28 @@
 {
   "expo": {
-    "name": "moim",
-    "slug": "moim",
-    "description": "Moim",
+    "name": "Dummy Demo",
+    "description": "This project is a real dummy.",
+    "slug": "DummyDemo",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "31.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
+    "icon": "./assets/logo.png",
     "splash": {
-      "image": "./assets/icons/logo.png"
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     }

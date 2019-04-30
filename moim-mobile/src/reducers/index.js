@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
-import { borrow } from './borrow';
-import { setNumber } from './setNumber';
+import { combineReducers } from "redux";
+import * as AuthReducer from "./auth";
+import * as BorrowReducer from "./borrow";
 
-export default combineReducers({
-    borrow,
-    setNumber
-});
+export default combineReducers(
+  Object.assign(
+    BorrowReducer,
+    AuthReducer,
+  ),
+);
