@@ -23,7 +23,7 @@ const HomeItem = createStackNavigator({
 });
 
 HomeItem.navigationOptions = {
-  drawerLabel: 'Home',
+  drawerLabel: 'Moim',
   drawerIcon: ({ tintColor }) => (
     <Icon
       name="brush"

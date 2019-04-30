@@ -9,8 +9,6 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "backgroundColor": "#1AC1D4",
-    "icon": "./assets/icons/logo.png",
     "splash": {
       "image": "./assets/icons/logo.png"
     },
