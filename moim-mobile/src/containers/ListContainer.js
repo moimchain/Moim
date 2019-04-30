@@ -13,10 +13,10 @@ class ListContainer extends React.Component {
                   console.log(borrower, ":", friends, ":", amount, ":", postNum)
                 if (isRepayment) {
                     this.props.performRepayment(borrower, amount, postNum);
-                    this.props.navigation.navigate("Main");
+                    this.props.navigation.navigate("Profile");
                 } else {
                     this.props.performSubmit(borrower, friends, amount, postNum);
-                    this.props.navigation.navigate("Profile");
+                    this.props.navigation.navigate("Main");
                 }
             },
             choose: (friends) => {

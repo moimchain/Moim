@@ -15,11 +15,16 @@ export default class ProfileScreen extends Component {
     return (
       <View>
         <Text h1>Loan Status</Text>
-        <Text h1>{this.props.loanInfo.totalAmount}</Text>
+        {/* <Text h1>{this.props.loanInfo.totalAmount}</Text>
         <View></View>
         <Text h2>{this.props.loanInfo.totalPayBackedAmount}</Text>
         <Text h2>{this.props.loanInfo.payBackedAmountArray}</Text>
-        <Text h2>{this.props.loanInfo.payBackedTimeArray}</Text>
+        <Text h2>{this.props.loanInfo.payBackedTimeArray}</Text> */}
+        <Text h1>333</Text>
+        <View></View>
+        <Text h2>333</Text>
+        <Text h2>[333]</Text>
+        <Text h2>[1556636942]</Text>
 
         <Button
             icon={{
