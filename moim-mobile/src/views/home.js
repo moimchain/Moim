@@ -30,7 +30,7 @@ class Home extends Component {
       <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.contentView}>
           <Image
-          source={require('../../assets/images/logo.png')}
+          source={require('../../assets/icons/logo.png')}
           style={{width: 425, height: 250}}
         />
         <Input placeholder='Loan Amount' />
