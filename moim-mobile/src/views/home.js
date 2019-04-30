@@ -3,26 +3,20 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  Text,
-  Dimensions,
   Image
   } from 'react-native';
-import {
-  SearchBar,
-  Icon,
-} from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import { Input } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+const navigateAction = NavigationActions.navigate({
+  routeName: 'lists',
 
-const dummySearchBarProps = {
-  showLoading: true,
-  onFocus: () => console.log('focus'),
-  onBlur: () => console.log('blur'),
-  onCancel: () => console.log('cancel'),
-  onClearText: () => console.log('cleared'),
-  onChangeText: text => console.log('text:', text),
-};
+  params: {},
+
+  action: NavigationActions.navigate({ routeName: 'lists' }),
+});
 
 class Home extends Component {
   render() {
@@ -33,20 +27,36 @@ class Home extends Component {
           source={require('../../assets/icons/logo.png')}
           style={{width: 425, height: 250}}
         />
-        <Input placeholder='Loan Amount' />
-        <Button
-              className="loan-input"
-              title='Sign In With Facebook'
-              buttonStyle={{
-                borderWidth: 2,
-                borderColor: 'white',
-                borderRadius: 30,
-                backgroundColor: '#1AC1D4'
-              }}
-              containerStyle={{ marginVertical: 10, height: 50, width: 250 }}
-              titleStyle={{ fontWeight: 'bold' }}
-              style={{alignSelf:'center'}}
-            />
+          <Input
+            containerStyle={{ marginVertical: 40 }}
+            placeholder='Loan Amount'>
+          </Input>
+          <View
+            containerStyle={{ marginVertical: 40 }}
+          >
+          <Button
+            containerStyle={{ marginVertical: 200 }}
+            buttonStyle={{
+              backgroundColor: '#1AC1D4',
+              borderRadius: 5
+            }}
+            titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+            icon={
+              <Icon
+                name="check-circle"
+                size={23}
+                color="white"
+              />
+            }
+            onPress={() => {
+              this.props.navigation.dispatch(navigateAction)
+            }}
+            title=" Submit">
+          </Button>
+        </View>
+
+
+
         </View>
       </ScrollView>
     );
