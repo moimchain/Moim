@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  Dimensions
+  Dimensions,
+  Image
   } from 'react-native';
 import {
   SearchBar,
@@ -12,6 +13,7 @@ import {
 } from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import { Input } from 'react-native-elements';
+
 
 const dummySearchBarProps = {
   showLoading: true,
@@ -26,11 +28,14 @@ class Home extends Component {
   render() {
     return (
       <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
-        <SearchBar placeholder="Default searchbar" {...dummySearchBarProps} />
-
+        <View style={styles.contentView}>
+          <Image
+          source={require('../../assets/images/logo.png')}
+          style={{width: 425, height: 250}}
+        />
         <Input placeholder='Loan Amount' />
-
         <Button
+              className="loan-input"
               title='Sign In With Facebook'
               buttonStyle={{
                 borderWidth: 2,
@@ -40,7 +45,9 @@ class Home extends Component {
               }}
               containerStyle={{ marginVertical: 10, height: 50, width: 250 }}
               titleStyle={{ fontWeight: 'bold' }}
+              style={{alignSelf:'center'}}
             />
+        </View>
       </ScrollView>
     );
   }
