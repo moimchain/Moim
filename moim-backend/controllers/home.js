@@ -88,13 +88,13 @@ exports.getLoanInfo = async (req, res) => {
         }
 
         res.json({
-            msg: 'Success!',
+            ok: true,
             loanInfo
         });
     } else {
         console.log('error');
         res.json({
-            msg: 'sorry'
+            ok: false
         });
     }
 
