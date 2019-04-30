@@ -61,6 +61,7 @@ export default class HomeScreen extends Component {
               color: "white"
             }}
             buttonStyle={{
+              marginVertical: 10,
               borderRadius: 5,
               marginHorizontal: 20,
               padding: 10,

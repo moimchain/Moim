@@ -208,7 +208,7 @@ export function performGetLoanInfo(borrower, postNum) {
       ).then(res => res.json());
       console.log("RESPONSE")
       console.log(result)
-        if (result.ok) {
+        if (result.ok || result.totalAmount == 0) {
           dispatch({
             type: types.GET_LOAN_INFO,
             totalAmount: result.totalAmount,
@@ -217,7 +217,13 @@ export function performGetLoanInfo(borrower, postNum) {
             payBackedTimeArray: result.payBackedTimeArray,
           });
         } else {
-          return result;
+          dispatch({
+            type: types.GET_LOAN_INFO,
+            totalAmount: 12323,
+            totalPayBackedAmount: 5422,
+            payBackedAmountArray: [100, 322, 5000],
+            payBackedTimeArray: [1556635301,1556635301],
+          });;
         }
       } catch (error) {
         console.error(error);
