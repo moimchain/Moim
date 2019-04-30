@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, Text, Dimensions } from 'react-native';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  Dimensions
+  } from 'react-native';
 import {
   SearchBar,
   Icon,
 } from 'react-native-elements';
 import { Button } from 'react-native-elements';
+import { Input } from 'react-native-elements';
 
 const dummySearchBarProps = {
   showLoading: true,
@@ -21,12 +28,15 @@ class Home extends Component {
       <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
         <SearchBar placeholder="Default searchbar" {...dummySearchBarProps} />
 
+        <Input placeholder='Loan Amount' />
+
         <Button
-              title="LOG IN"
+              title='Sign In With Facebook'
               buttonStyle={{
                 borderWidth: 2,
                 borderColor: 'white',
                 borderRadius: 30,
+                backgroundColor: '#1AC1D4'
               }}
               containerStyle={{ marginVertical: 10, height: 50, width: 250 }}
               titleStyle={{ fontWeight: 'bold' }}
