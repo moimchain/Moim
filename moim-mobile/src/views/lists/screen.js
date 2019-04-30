@@ -74,66 +74,6 @@ export default class ListsScreen1 extends Component {
     this.setState({ fontLoaded: true });
   }
 
-  renderValue(user) {
-    const { value, positive } = user;
-
-    if (positive) {
-      return (
-        <View
-          style={{
-            backgroundColor: 'rgba(220,230,218,1)',
-            width: 70,
-            height: 28,
-            borderRadius: 5,
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-            marginLeft: 10,
-          }}
-        >
-          <Icon name="md-arrow-dropup" type="ionicon" color="green" size={25} />
-          <Text
-            style={{
-              color: 'green',
-              fontFamily: 'regular',
-              fontSize: 13,
-              marginLeft: 5,
-            }}
-          >
-            {value}
-          </Text>
-        </View>
-      );
-    } else {
-      return (
-        <View
-          style={{
-            backgroundColor: 'rgba(244,230,224,1)',
-            width: 70,
-            height: 28,
-            borderRadius: 5,
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-            marginLeft: 10,
-          }}
-        >
-          <Icon name="md-arrow-dropdown" type="ionicon" color="red" size={25} />
-          <Text
-            style={{
-              color: 'red',
-              fontFamily: 'regular',
-              fontSize: 13,
-              marginLeft: 5,
-            }}
-          >
-            {value}
-          </Text>
-        </View>
-      );
-    }
-  }
-
   renderCard(user, index) {
     const { name, avatar } = user;
 
