@@ -8,7 +8,7 @@ const HomeItem = createStackNavigator({
   Home: {
     screen: Home,
     navigationOptions: ({ navigation }) => ({
-      title: 'Home',
+      title: 'Moim',
       headerLeft: (
         <Icon
           name="menu"

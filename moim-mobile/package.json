@@ -1,10 +1,10 @@
 {
-  "name": "react-native-elements-app",
-  "version": "1.0.0",
-  "description": "Demo app for React Native Elements UI Library",
-  "author": "Monte Thakkar",
+  "name": "moim",
+  "version": "0.0.1",
+  "description": "moim app",
+  "author": "moim",
   "private": true,
-  "homepage": "https://react-native-elements.github.io/react-native-elements-app",
+  "homepage": "",
   "main": "src/index.native.js",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
@@ -26,7 +26,9 @@
     "react-native-vector-icons": "^6.3.0",
     "react-native-web": "^0.10.0",
     "react-navigation": "^3.5.1",
-    "react-scripts": "^2.1.5"
+    "react-redux": "^7.0.3",
+    "react-scripts": "^2.1.5",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "web": "react-app-rewired start",
