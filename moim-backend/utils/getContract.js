@@ -14,12 +14,13 @@ const web3 = new Web3(provider);
 const contractInstance = web3.eth.Contract(abi, contractAddr);
 const adminAddr = '0x1Cc180855d25D3B8A3090F04a30Cc27A5C63FfE1';
 
-exports.createLoan = ({
+exports.createLoan = (
     borrowMail,
     lenderMail,
     postNum,
     lenderAmount
-}) => {
+) => {
+    console.log(borrowMail);
     return contractInstance.methods.createNewLoan(borrowMail, lenderMail, postNum, lenderAmount).send({
         gas: '210000',
         from: adminAddr
@@ -29,12 +30,12 @@ exports.createLoan = ({
 };
 
 
-exports.updateLoan = ({
+exports.updateLoan = (
     borrowMail,
     lenderMail,
     postNum,
     lenderAmount
-}) => {
+) => {
     return contractInstance.methods.payBackLoan(borrowMail, lenderMail, postNum, lenderAmount).send({
         gas: '210000',
         from: adminAddr
@@ -43,13 +44,10 @@ exports.updateLoan = ({
     })
 };
 
-exports.updateLoan = ({
+exports.getLoan = async (
     borrowMail,
     lenderMail,
     postNum,
-    lenderAmount
-}) => {
-    contractInstance.methods.getLoanInfo(borrowMail, lenderMail, postNum).call().then(res => {
-        console.log(res);
-    })
+) => {
+    return await contractInstance.methods.getLoanInfo(borrowMail, lenderMail, postNum).call();
 };
